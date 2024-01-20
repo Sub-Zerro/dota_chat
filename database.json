@@ -1,0 +1,8 @@
+{
+    "host": "db.scfiqczqjnsujwzmhoxj.supabase.co",
+    "user": "postgres",
+    "password": "govn@mnogo227",
+    "database": "postgres",
+    "port": 5432,
+    "ssl": true
+  }
