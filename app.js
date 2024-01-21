@@ -65,6 +65,16 @@ app.get('/index', function(req, res){
     res.sendFile(path.join(__dirname, '/index.html'));
 })
 
+app.post('/live', async function(req, res){
+    let data = await get_live_pro();
+    let heroes = await get_heroes();
+    res.send({arr: data, heroes: heroes});
+})
+
+app.get('/live', function(req, res){
+    res.sendFile(path.join(__dirname, '/htmls/live.html'));
+})
+
 app.get('/meta', function(req, res){
     res.sendFile(path.join(__dirname, '/htmls/meta.html'));
 })
@@ -228,4 +238,30 @@ async function get_meta(){
     })
     
     
+}
+
+function get_live_pro(){
+    return arr = new Promise((resolve, reject)=>{
+        fetch('https://api.opendota.com/api/live').then((res)=>{
+            res.json().then((data)=>{
+                resolve(data);
+            })
+        });
+    }).then((data)=>{
+        return data;
+    })
+    
+    
+}
+
+function get_heroes(){
+    return arr = new Promise((resolve, reject)=>{
+        fetch('https://api.opendota.com/api/heroes').then((res)=>{
+            res.json().then((data)=>{
+                resolve(data);
+            })
+        });
+    }).then((data)=>{
+        return data;
+    })
 }
