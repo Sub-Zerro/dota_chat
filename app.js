@@ -75,6 +75,10 @@ app.get('/live', function(req, res){
     res.sendFile(path.join(__dirname, '/htmls/live.html'));
 })
 
+app.get('/author', function(req, res){
+    res.sendFile(path.join(__dirname, '/htmls/author.html'));
+})
+
 app.get('/meta', function(req, res){
     res.sendFile(path.join(__dirname, '/htmls/meta.html'));
 })

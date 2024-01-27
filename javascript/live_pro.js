@@ -1,4 +1,6 @@
 let h2 = document.querySelector('h2');
+let div_start = document.querySelector(".info");
+div_start.display = "none";
 
 fetch('/live', {
     method: 'POST',
@@ -68,7 +70,35 @@ fetch('/live', {
             let roma = final_str;
 
             p.addEventListener('click', ()=>{
-                alert("Последние матчи про игроков на этом герое: \n" + roma);
+                
+
+                console.log(roma);
+
+                let div = document.querySelector('.info');
+                if (roma == ''){
+                    div.innerText = "На данном персонаже недавних игр нет";
+                }else{
+                    div.innerText = roma;
+                }
+                
+
+                div.display = "flex";
+
+                
+                
+                let esc = document.createElement("button");
+                esc.textContent = "Закрыть";
+                esc.className = "esc";
+
+                div.appendChild(esc);
+
+                esc.onclick = function(){
+                    //div.style.display = "none";
+                    div.innerText = '';
+                }
+
+                window.scrollTo(0, 0);
+                //alert("Последние матчи про игроков на этом герое: \n" + roma);
                 // let div = document.querySelector('.info');
                 // let p;
                 // for (let z = 0; z < str_arr.length; z++){
