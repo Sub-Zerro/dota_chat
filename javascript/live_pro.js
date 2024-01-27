@@ -19,28 +19,68 @@ fetch('/live', {
             p = document.createElement('p');
             p.textContent = `${i+1}. ${data.heroes[i].localized_name}`;
 
-            str = "";
-
+            let str_arr = [];
+            let temp = [];
             if (i<=100){
                 for (let k = 0; k < data.arr.length; k++){
                     for (let l = 0; l < data.arr[k].players.length; l++){
                         if (data.arr[k].players[l].hero_id == data.heroes[i].id){
-                            console.log(typeof(data.arr[k].match_id));
-                            str += data.arr[k].match_id;
-                            str +='\n';
+                            //console.log(typeof(data.arr[k].match_id));
+                            temp = [];
+                            let temp_var;
+                            //temp.push(data.arr[k].match_id);
+                            for (let q = 0; q < data.arr[k].players.length; q++){
+                                
+                                for (let w = 0; w < data.heroes.length; w++){
+                                    if (data.arr[k].players[q].hero_id == data.heroes[w].id){
+                                        temp_var = data.heroes[w].localized_name;
+                                    }
+                                }
+                                temp.push([data.arr[k].players[q].name, temp_var]);
+                                //console.log("123:", (data.arr[k].players[q].hero_id)-1);
+                            }
+                            str_arr.push([data.arr[k].match_id, temp, data.arr[k].average_mmr]);
                         }
                     }
                 }
             }
             
 
-            console.log(str);
+            console.log(str_arr);
 
-            let roma = "123";
-            roma = str;
+            // let roma = "123";
+            // roma = str;
+
+            let final_str = "";
+            for (let e = 0; e < str_arr.length; e++){
+                final_str += `id матча: ${str_arr[e][0]} \n`;
+                for (let r = 0; r < str_arr[e][1].length; r++){
+                    if (str_arr[e][1][r][0] == undefined){
+                        final_str += `${r+1}. Без имени, играл на ${str_arr[e][1][r][1]}\n`;
+                    }else{
+                        final_str += `${r+1}. ${str_arr[e][1][r][0]}, играл на ${str_arr[e][1][r][1]}\n`;
+                    }
+                }
+                final_str += "Средний ммр: " + str_arr[e][2];
+                final_str += "\n\n";
+            }
+
+            let roma = final_str;
 
             p.addEventListener('click', ()=>{
-                alert("Последние матчи про игроков на этом герое(id матча): \n" + roma);
+                alert("Последние матчи про игроков на этом герое: \n" + roma);
+                // let div = document.querySelector('.info');
+                // let p;
+                // for (let z = 0; z < str_arr.length; z++){
+                //     p = document.createElement('p');
+                //     p.textContent = str_arr[z];
+                //     p.addEventListener('click', ()=>{
+                //         let players = "";
+                //         for (let x = 0; x < )
+                //         div.replaceChildren();
+                //         div.appendChild();
+                //     })
+                // }
             })
             document.body.appendChild(p);
         }
