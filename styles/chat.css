@@ -7,11 +7,18 @@ body{
     height: 100%;
 }
 
+.main{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
 .area{
     border: 2px dotted black;
+    margin-top: 0;
     min-width: 80%;
-    min-height: 80%;
-    max-height: 2000px;
+    min-height: 70%;
+    max-height: 80%;
     position: fixed;
 
     margin-left: 10%;
@@ -27,6 +34,7 @@ body{
     min-width: 100%;
     bottom: 0;
     position: absolute;
+    margin-top: 0;
 }
 
 .text-area{

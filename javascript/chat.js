@@ -57,15 +57,17 @@ setInterval(()=>{
         // })
 
         btn.onclick = async()=>{
-            fetch('/add-message', {
+            await fetch('/add-message', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify({rank: chat_data.rank, message: input.value})
               }).then(()=>{
-                //location.reload();
+                input.value = '';
               })
+
+              
     
             
         }

@@ -198,7 +198,7 @@ async function send_to_db(text, rank){
             })
     }else{
         pool.query(`
-        INSERT INTO chat(text_data, rank, id)values('${text}', ${rank}, ${arr[arr.length-1]+1});
+        INSERT INTO chat(text_data, rank, id)values('${text}', ${rank}, ${Number(arr[arr.length-1])+1});
         `, (err, res) => {
             console.log(err, res);
         })

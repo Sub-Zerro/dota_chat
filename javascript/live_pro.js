@@ -38,7 +38,7 @@ fetch('/live', {
                                         temp_var = data.heroes[w].localized_name;
                                     }
                                 }
-                                temp.push([data.arr[k].players[q].name, temp_var]);
+                                temp.push([data.arr[k].players[q].name, temp_var, data.arr[k].players[q].team_slot]);
                                 //console.log("123:", (data.arr[k].players[q].hero_id)-1);
                             }
                             str_arr.push([data.arr[k].match_id, temp, data.arr[k].average_mmr]);
@@ -58,9 +58,9 @@ fetch('/live', {
                 final_str += `id матча: ${str_arr[e][0]} \n`;
                 for (let r = 0; r < str_arr[e][1].length; r++){
                     if (str_arr[e][1][r][0] == undefined){
-                        final_str += `${r+1}. Без имени, играл на ${str_arr[e][1][r][1]}\n`;
+                        final_str += `${r+1}. Не про игрок, играл на ${str_arr[e][1][r][1]}(${str_arr[e][1][r][2]} поз)\n`;
                     }else{
-                        final_str += `${r+1}. ${str_arr[e][1][r][0]}, играл на ${str_arr[e][1][r][1]}\n`;
+                        final_str += `${r+1}. ${str_arr[e][1][r][0]}, играл на ${str_arr[e][1][r][1]}(${str_arr[e][1][r][2]} поз)\n`;
                     }
                 }
                 final_str += "Средний ммр: " + str_arr[e][2];
