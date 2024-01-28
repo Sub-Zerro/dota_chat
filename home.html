@@ -14,10 +14,41 @@
         a{
             margin-top: 7%;
         }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+        #preloader.hide-preloader {
+            animation: hidePreloader 1s;
+        }
+
+        #preloader.preloader-hidden {
+            display: none;
+        }
+
+        @keyframes hidePreloader {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div id='preloader'>
+        <img src="imgs/dota-gaben.gif" alt="preloader">
+    </div>
+
     <div class="main">
         <a href="/index">Чат по рангам</a>
         <a href="/meta">Мета за неделю</a>
@@ -25,6 +56,16 @@
         <a target="_blank" href="https://mail.google.com/mail/u/0/#inbox?compose=DXDwSWwzqBRjgLPgNFwWXncTPfzSCLjcCgsrpDgKtXbLdnmpTgZCrxkLzNSKZBRrlRJFpBdTPLklxzsFkJMFHRDNDqhCMdPQLBwrptzjhQszMBhSNZPZRntg" data-ajax="false">Предложения по улучшению</a>
         <a href="/author" class="author">Автор</a>
     </div>
+
+    <script>
+        window.onload = function() {
+            let preloader = document.getElementById('preloader');
+            preloader.classList.add('hide-preloader');
+            setInterval(function() {
+                preloader.classList.add('preloader-hidden');
+            }, 990);
+        }
+    </script>
     
 </body>
 </html>
